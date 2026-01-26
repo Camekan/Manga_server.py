@@ -19,7 +19,7 @@ from PIL import Image, ImageEnhance
 # ==============================================================================
 
 MODEL_PATH = r"E:\Qwen2.5-14B-Instruct-Q4_K_M.gguf"
-GPU_LAYERS = 35
+GPU_LAYERS = 30
 FORCE_CPU_MODE = False
 UNLOAD_TIMEOUT_MINS = 15
 MANUAL_TESSERACT_PATH = None
@@ -82,7 +82,7 @@ detector = None
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 detector_dir = os.path.join(current_dir, 'comic_text_detector')
-model_weights_path = os.path.join(detector_dir, 'models', 'comic_text_detector.pt')
+model_weights_path = os.path.join(detector_dir, 'models', 'comic_text_detector.pt.onnx')
 
 if os.path.exists(detector_dir) and detector_dir not in sys.path:
     sys.path.insert(0, detector_dir)
@@ -676,7 +676,7 @@ def process_image(image, mode='jpn'):
 # ==============================================================================
 
 app = Flask(__name__)
-CURRENT_MODE = 'jpn'
+CURRENT_MODE = 'kor'
 
 @app.route('/ocr', methods=['POST'])
 def ocr_endpoint():
